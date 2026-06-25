@@ -1,0 +1,4 @@
+{
+  "message": "Session expired or invalid",
+  "code": "SESSION_INVALID"
+}

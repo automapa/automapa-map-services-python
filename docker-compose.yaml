@@ -1,0 +1,61 @@
+services:
+  pytest:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    env_file:
+      - .env
+    command: uv run pytest tests/
+
+  pytest-unit:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    env_file:
+      - .env
+    command: uv run pytest tests/unit/ -v
+
+  pytest-integration:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    env_file:
+      - .env
+    command: uv run pytest tests/integration/ -v
+
+  ruff:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    command: uv run ruff check .
+
+  ruff-format-check:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    command: uv run ruff format --check .
+
+  mypy:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    command: uv run mypy automapa_map_services
+
+  compile:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    command: uv run python -m compileall -q automapa_map_services tests examples
+
+  check:
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    env_file:
+      - .env
+    command: >
+      sh -c "uv run ruff check . &&
+             uv run ruff format --check . &&
+             uv run mypy automapa_map_services &&
+             uv run python -m compileall -q automapa_map_services tests examples &&
+             uv run pytest tests/"

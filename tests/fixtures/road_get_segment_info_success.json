@@ -1,0 +1,21 @@
+{
+  "result": {
+    "attractedX": 21.0070737,
+    "attractedY": 52.18288,
+    "pureDistance": 10,
+    "segment": {
+      "category": 3,
+      "country": 31,
+      "dir": 0,
+      "id": 37530,
+      "isFerry": -1,
+      "isHighway": -1,
+      "isToll": -1,
+      "length": 55,
+      "placeName": "Warszawa",
+      "speedLimit": 50,
+      "streetName": "Domaniewska",
+      "urbanArea": 1
+    }
+  }
+}

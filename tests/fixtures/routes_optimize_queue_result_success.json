@@ -1,0 +1,6 @@
+{
+  "result": {
+    "resultReady": true,
+    "optimizedSequence": ["Warszawa", "Gdansk", "Poznan", "Wroclaw", "Krakow", "Bialystok"]
+  }
+}

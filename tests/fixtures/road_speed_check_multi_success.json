@@ -1,0 +1,20 @@
+{
+  "result": [
+    {
+      "speedLimit": 140,
+      "speedLimitTruck": 80,
+      "urbanArea": false,
+      "x": 15.2154624,
+      "y": 52.31186,
+      "distance": 1
+    },
+    {
+      "speedLimit": 0,
+      "speedLimitTruck": -1,
+      "urbanArea": false,
+      "x": 13.8412231,
+      "y": 52.31114,
+      "distance": 1
+    }
+  ]
+}

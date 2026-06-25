@@ -1,0 +1,17 @@
+{
+  "result": {
+    "x": 21.0122,
+    "y": 52.2297,
+    "city": "Warszawa",
+    "street": "Domaniewska",
+    "house": "17A",
+    "pcode": "02-672",
+    "country": "Polska",
+    "province": "mazowieckie",
+    "district": "Mokotów",
+    "quality": 9,
+    "resultRadius": 10,
+    "mapLink": "https://api.automapa.pl/map?x=21.0122&y=52.2297",
+    "unknownFutureField": "should be preserved"
+  }
+}

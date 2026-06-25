@@ -1,0 +1,13 @@
+{
+  "result": {
+    "items": [
+      {
+        "city": "Warszawa",
+        "street": "Domaniewska",
+        "zipcode": "02-672",
+        "count": 1,
+        "unknownFutureField": "should be preserved"
+      }
+    ]
+  }
+}

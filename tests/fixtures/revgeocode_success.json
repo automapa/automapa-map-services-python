@@ -1,0 +1,14 @@
+{
+  "result": {
+    "x": 21.0122,
+    "y": 52.2297,
+    "city": "Warszawa",
+    "street": "Domaniewska",
+    "house": "17A",
+    "pcode": "02-672",
+    "country": "Polska",
+    "province": "mazowieckie",
+    "quality": 9,
+    "resultRadius": 25
+  }
+}

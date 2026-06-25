@@ -1,0 +1,10 @@
+{
+  "result": [
+    {"points": "0-1", "length": 342000, "duration": 210},
+    {"points": "1-0", "length": 342000, "duration": 210},
+    {"points": "0-2", "length": 310000, "duration": 180},
+    {"points": "2-0", "length": 310000, "duration": 180},
+    {"points": "1-2", "length": 380000, "duration": 220},
+    {"points": "2-1", "length": 380000, "duration": 220}
+  ]
+}

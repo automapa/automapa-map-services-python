@@ -1,0 +1,17 @@
+{
+  "result": {
+    "length": 341618,
+    "eta": 212,
+    "mapurl": "https://mapa.targeo.pl/trasa_api,example",
+    "routePoints": [
+      [21.0073642, 52.2297],
+      [19.5, 53.1],
+      [18.6282, 54.352]
+    ],
+    "desc": [
+      {"location": "Warszawa", "road": "Plater", "roadType": "secondary", "distance": 169, "eta": 0, "routePoint": [21.0053125, 52.2285938]},
+      {"location": "Gdansk",   "road": "",       "roadType": "city",      "distance": 145, "eta": 212, "routePoint": [18.6284062, 54.352125]}
+    ],
+    "tolls": {"systems": []}
+  }
+}

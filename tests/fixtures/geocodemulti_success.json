@@ -1,0 +1,45 @@
+{
+  "result": [
+    [
+      {
+        "quality": 9,
+        "x": 21.0073642,
+        "y": 52.18288,
+        "country": "PL",
+        "province": "mazowieckie",
+        "district": "Warszawa",
+        "community": "Warszawa",
+        "city": "Warszawa",
+        "quarter": "Mokotów",
+        "pcode": "02-672",
+        "street": "Domaniewska",
+        "house": "37",
+        "result_radius": 0,
+        "map_link": "https://mapa.targeo.pl/Warszawa,lokalizacja_test,19",
+        "unknownFutureField": "should be preserved"
+      }
+    ],
+    {
+      "status": "ERROR",
+      "message": "Unknown address"
+    },
+    [
+      {
+        "quality": 9,
+        "x": 18.3865894,
+        "y": 54.57206,
+        "country": "PL",
+        "province": "pomorskie",
+        "district": "wejherowski",
+        "community": "Rumia",
+        "city": "Rumia",
+        "quarter": "",
+        "pcode": "84-230",
+        "street": "Grunwaldzka",
+        "house": "2",
+        "result_radius": 0,
+        "map_link": "https://mapa.targeo.pl/Rumia,lokalizacja_test2,19"
+      }
+    ]
+  ]
+}

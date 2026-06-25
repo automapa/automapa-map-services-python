@@ -1,0 +1,41 @@
+{
+  "result": {
+    "items": [
+      {
+        "type": "place",
+        "subtype": "building",
+        "name": "Domaniewska 37, 02-672 Warszawa",
+        "province": "mazowieckie",
+        "district": "Warszawa",
+        "community": "Warszawa",
+        "place": "Warszawa",
+        "quarter": "Mokotów",
+        "street": "Domaniewska",
+        "number": "37",
+        "postal_code": "02-672",
+        "coords": {
+          "x": 21.0071318,
+          "y": 52.18284
+        },
+        "unknownFutureField": "should be preserved"
+      },
+      {
+        "type": "place",
+        "subtype": "building",
+        "name": "Domaniewska 37A, 02-672 Warszawa",
+        "province": "mazowieckie",
+        "district": "Warszawa",
+        "community": "Warszawa",
+        "place": "Warszawa",
+        "quarter": "Mokotów",
+        "street": "Domaniewska",
+        "number": "37A",
+        "postal_code": "02-672",
+        "coords": {
+          "x": 21.0070156,
+          "y": 52.18238
+        }
+      }
+    ]
+  }
+}

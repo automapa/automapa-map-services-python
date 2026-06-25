@@ -1,0 +1,5 @@
+{
+  "message": "Rate limit exceeded",
+  "code": "RATE_LIMIT",
+  "retryAfter": 60
+}

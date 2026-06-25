@@ -1,0 +1,31 @@
+{
+  "result": [
+    {
+      "country": "PL",
+      "province": "mazowieckie",
+      "district": "Warszawa",
+      "community": "Warszawa",
+      "city": "Warszawa",
+      "quarter": "Mokotów",
+      "pcode": null,
+      "street": "Domaniewska",
+      "house": "37p",
+      "unknownFutureField": "should be preserved"
+    },
+    {
+      "status": "ERROR",
+      "message": "Point outside Europe"
+    },
+    {
+      "country": "BY",
+      "province": "Minsk",
+      "district": "Minsk",
+      "community": null,
+      "city": "Minsk",
+      "quarter": null,
+      "pcode": "220004",
+      "street": "vulitsa Karalya",
+      "house": "5"
+    }
+  ]
+}

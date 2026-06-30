@@ -34,11 +34,9 @@ points = [
 try:
     # Step 1: submit the optimisation job
     submit = client.routes().optimize_queue(
-        {
-            "points": points,
-            "optimizeBy": "time",  # 'time' or 'distance'
-            "object": {"type": "car"},
-        }
+        points=points,
+        optimize_by="time",  # 'time' or 'distance'
+        object={"type": "car"},
     )
 
     request_id = submit.data().get("requestId", "")
@@ -48,7 +46,7 @@ try:
     max_attempts = 15
     for attempt in range(1, max_attempts + 1):
         time.sleep(2)
-        result = client.routes().optimize_queue_result({"requestId": request_id})
+        result = client.routes().optimize_queue_result(request_id)
         data = result.data()
 
         if data.get("resultReady") is True:

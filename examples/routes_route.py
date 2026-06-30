@@ -22,17 +22,15 @@ print("=== Routes.route() - route Warsaw → Gdansk ===\n")
 
 try:
     response = client.routes().route(
-        {
-            "points": [
-                {"x": 21.0073642, "y": 52.2297},  # Warszawa
-                {"x": 18.6282, "y": 54.3520},  # Gdańsk
-            ],
-            "route": {
-                "type": "short",  # 'quick' | 'short' | 'optimal'
-                "traffic": True,  # account for traffic
-            },
-            "object": {"type": "car"},
-        }
+        points=[
+            {"x": 21.0073642, "y": 52.2297},  # Warszawa
+            {"x": 18.6282, "y": 54.3520},  # Gdańsk
+        ],
+        route={
+            "type": "short",  # 'quick' | 'short' | 'optimal'
+            "traffic": True,  # account for traffic
+        },
+        object={"type": "car"},
     )
 
     data = response.data()

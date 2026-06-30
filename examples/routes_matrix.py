@@ -28,10 +28,8 @@ points = [
 
 try:
     response = client.routes().matrix(
-        {
-            "points": points,
-            "type": 1,  # 1 = time (minutes), 2 = distance (metres)
-        }
+        points=points,
+        type=1,  # 1 = time (minutes), 2 = distance (metres)
     )
 
     rows = response.data()

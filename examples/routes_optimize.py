@@ -28,12 +28,10 @@ points = [
 
 try:
     response = client.routes().optimize(
-        {
-            "points": points,
-            "type": 1,  # 1 = time, 2 = distance
-            "fixedEnd": False,  # True = last point is the destination; False = return to start
-            "object": {"type": "car"},
-        }
+        points=points,
+        type=1,  # 1 = time, 2 = distance
+        fixed_end=False,  # True = last point is the destination; False = return to start
+        object={"type": "car"},
     )
 
     data = response.data()

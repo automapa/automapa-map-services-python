@@ -9,6 +9,11 @@ from automapa_map_services.http.client import HttpClientProtocol
 from automapa_map_services.session.storage import SessionStorageProtocol
 
 
+def hash_password(password: str, salt: str) -> str:
+    """Return the credential expected by ``generateSession``: ``md5(md5(password) + salt)``."""
+    return hashlib.md5((hashlib.md5(password.encode()).hexdigest() + salt).encode()).hexdigest()
+
+
 class SessionManager:
     _NO_SESSION_METHODS = frozenset(["Session.getSalt", "Session.generateSession"])
 
@@ -40,9 +45,7 @@ class SessionManager:
         salt_body = self._make_call("Session", "getSalt", {"key": self._config.key})
         salt = str(salt_body.get("result", {}).get("salt", ""))
 
-        pass_hash = hashlib.md5(
-            (hashlib.md5(self._config.password.encode()).hexdigest() + salt).encode()
-        ).hexdigest()
+        pass_hash = hash_password(self._config.password, salt)
 
         session_body = self._make_call(
             "Session",

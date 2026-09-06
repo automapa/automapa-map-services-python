@@ -3,7 +3,7 @@ import hashlib
 import pytest
 
 from automapa_map_services.config import Config
-from automapa_map_services.session.manager import SessionManager
+from automapa_map_services.session.manager import SessionManager, hash_password
 from automapa_map_services.session.storage import InMemorySessionStorage
 from tests.support.mock_http_client import MockHttpClient
 
@@ -118,3 +118,11 @@ def test_storage_pre_populated_avoids_http_calls(mock_http: MockHttpClient, conf
 
     assert session_id == "pre-existing-id"
     assert mock_http.get_request_count() == 0
+
+
+def test_hash_password_matches_api_formula() -> None:
+    salt = "xNnlXNS3Bq"
+    expected = hashlib.md5((hashlib.md5(b"test-pass").hexdigest() + salt).encode()).hexdigest()
+
+    assert hash_password("test-pass", salt) == expected
+    assert hash_password("test-pass", salt) != "test-pass"

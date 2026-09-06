@@ -12,7 +12,7 @@ from automapa_map_services.exceptions import (
 from automapa_map_services.formatter.google import GoogleFormatter
 from automapa_map_services.formatter.registry import FormatterRegistry
 from automapa_map_services.response.api_response import ApiResponse
-from automapa_map_services.session.manager import SessionManager
+from automapa_map_services.session.manager import SessionManager, hash_password
 from automapa_map_services.session.storage import InMemorySessionStorage
 from tests.support.mock_http_client import MockHttpClient
 
@@ -299,3 +299,38 @@ def test_get_config_returns_config(client: ApiClient) -> None:
 
 def test_config_property_returns_config(client: ApiClient) -> None:
     assert client.config.key == "test-key"
+
+
+def _make_client_without_session(mock_http: MockHttpClient) -> ApiClient:
+    config = Config(key="test-key", password="test-pass")
+    return ApiClient(config=config, http_client=mock_http)
+
+
+def test_open_session_sends_hashed_password_and_returns_session_id(
+    mock_http: MockHttpClient,
+) -> None:
+    salt = "xNnlXNS3Bq"
+    mock_http.add_response("Session", "getSalt", {"result": {"salt": salt}})
+    mock_http.add_response("Session", "generateSession", {"result": {"sessionId": "qPPdEpdtpb"}})
+
+    session_id = _make_client_without_session(mock_http).open_session()
+
+    assert session_id == "qPPdEpdtpb"
+    payloads = mock_http.get_all_request_payloads()
+    assert payloads[0] == {"key": "test-key"}
+    assert payloads[1] == {"key": "test-key", "pass": hash_password("test-pass", salt)}
+    assert payloads[1]["pass"] != "test-pass"
+    assert mock_http.get_request_count() == 2
+
+
+def test_open_session_then_call_reuses_session_id(mock_http: MockHttpClient) -> None:
+    mock_http.add_response("Session", "getSalt", {"result": {"salt": "abc"}})
+    mock_http.add_response("Session", "generateSession", {"result": {"sessionId": "manual-id"}})
+    mock_http.add_response("PingPong", "ping", {"result": "pong"})
+
+    client = _make_client_without_session(mock_http)
+    session_id = client.open_session()
+    client.ping_pong().ping("hello")
+
+    assert mock_http.get_request_count() == 3
+    assert mock_http.get_last_request().headers["Session-Id"] == session_id

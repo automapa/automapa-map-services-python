@@ -82,12 +82,16 @@ client = ApiClient(Config(
 
 ## 4. Session handling
 
-A session is opened automatically (lazy) on the first call that requires authorisation.
-To open it manually:
+A session is opened automatically (lazy) on the first call that requires authorization.
+To open it manually (fetches a salt, hashes the configured password and stores the session id
+for subsequent calls):
 
 ```python
-client.session().generate_session(key="YOUR_API_KEY", pass_="YOUR_PASSWORD")
+session_id = client.open_session()
 ```
+
+Sessions opened through `Session.login()` / `generate_session()` are **not** stored in the
+client; use `client.open_session()` when you want the client itself to reuse the session.
 
 ---
 

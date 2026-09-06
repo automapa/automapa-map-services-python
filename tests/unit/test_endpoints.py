@@ -11,15 +11,18 @@ from automapa_map_services.endpoints.routes import Routes
 from automapa_map_services.endpoints.session import Session
 from automapa_map_services.endpoints.speed import Speed
 from automapa_map_services.response.api_response import ApiResponse
+from automapa_map_services.session.manager import hash_password
 
 
 class RecordingClient:
-    def __init__(self) -> None:
+    def __init__(self, responses: list[dict[str, Any]] | None = None) -> None:
         self.calls: list[tuple[str, str, dict[str, Any]]] = []
+        self._responses = list(responses or [])
 
     def call(self, service: str, method: str, params: dict[str, Any]) -> ApiResponse:
         self.calls.append((service, method, params))
-        return ApiResponse(raw={"result": "ok"}, status_code=200)
+        raw = self._responses.pop(0) if self._responses else {"result": "ok"}
+        return ApiResponse(raw=raw, status_code=200)
 
 
 def test_ping_pong_ping_dispatches_message() -> None:
@@ -96,6 +99,26 @@ def test_session_methods_dispatch() -> None:
         ("Session", "getSalt", {"key": "key"}),
         ("Session", "generateSession", {"key": "key", "pass": "pass-hash"}),
     ]
+
+
+def test_session_login_fetches_salt_and_sends_hashed_password() -> None:
+    salt = "xNnlXNS3Bq"
+    client = RecordingClient(
+        responses=[{"result": {"salt": salt}}, {"result": {"sessionId": "qPPdEpdtpb"}}]
+    )
+
+    response = Session(client).login("key", "plain-password")
+
+    assert response.data()["sessionId"] == "qPPdEpdtpb"
+    assert client.calls == [
+        ("Session", "getSalt", {"key": "key"}),
+        (
+            "Session",
+            "generateSession",
+            {"key": "key", "pass": hash_password("plain-password", salt)},
+        ),
+    ]
+    assert client.calls[1][2]["pass"] != "plain-password"
 
 
 def test_autocomplete_search_dispatches_with_correct_params() -> None:

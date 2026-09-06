@@ -71,6 +71,22 @@ def test_generate_session_via_facade_returns_session_id(
 
 
 @requires_live_api()
+def test_login_via_facade_with_plain_password_returns_session_id(
+    live_api_client: ApiClient,
+    live_config: Config,
+) -> None:
+    response = live_api_client.session().login(live_config.key, live_config.password)
+    assert response.status() == 200
+    assert response.data()["sessionId"]
+
+
+@requires_live_api()
+def test_open_session_via_client_returns_session_id(live_api_client: ApiClient) -> None:
+    session_id = live_api_client.open_session()
+    assert isinstance(session_id, str) and session_id
+
+
+@requires_live_api()
 def test_salt_is_unique_on_each_call(
     live_request_builder: RequestBuilder,
     live_http_client: UrllibHttpClient,

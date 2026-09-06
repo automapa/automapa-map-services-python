@@ -55,6 +55,15 @@ class ApiClient:
     def get_config(self) -> Config:
         return self._config
 
+    def open_session(self) -> str:
+        """Open the session now instead of lazily on the first authorised call.
+
+        Fetches a salt, hashes the configured password as ``md5(md5(password) + salt)``, calls
+        ``Session.generateSession`` and stores the returned ``sessionId`` for subsequent calls.
+        Returns the cached id if a session is already open.
+        """
+        return self._session_manager.ensure_session()
+
     def call(
         self,
         service: str,

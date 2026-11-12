@@ -47,7 +47,7 @@ The SDK covers:
 - **Address autocomplete** — suggestions as the user types
 - **Google Geocoding API compatibility** — optional `google` response format
 
-For the full list of endpoints and parameters, see the [Automapa REST API documentation](https://docs.automapa.pl/wiki/external/view/AM/API_REST/services/).
+For the full list of endpoints and parameters, see the [Automapa API documentation](https://api.automapa.com).
 
 ---
 
